@@ -33,3 +33,21 @@ div.cross:before, div.cross:after {
     margin-top: -15%;
     width: 100%;
   }
+
+  div.circle {
+  height: 100px;
+  width: 100px;
+  background-color: palevioletred;
+  border-radius: 50%;
+  display: inline-block;
+  position:relative;
+}
+
+div.innercircle
+{
+  height:60px;
+  width: 60px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 20px 0 0 20px;
+}
