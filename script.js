@@ -1,3 +1,5 @@
+let turn = "cross";
+
 toggleCross = (element) => {
     if (element.childNodes[0].classList.length === 0)
     {        
@@ -13,13 +15,19 @@ toggleCross = (element) => {
     }
 }
 
-markCell = (element, turn) => {
+markCell = (element) => {
+    console.log(turn)
     if (turn === "circle") {
-        element.childNodes[0] = createCircleNode(element.childNodes[0]);
+        console.log("about to add circle node");
+        element.appendChild(createCircleNode(element.childNodes[0]));
+        element.removeChild(element.firstChild);
     }
     else if (turn === "cross"){
-        element.childNodes[0] = createCrossNode(element.childNodes[0]);
+        console.log("about to add cross node");
+        element.appendChild(createCrossNode(element.childNodes[0]));
+        element.removeChild(element.firstChild);
     }
+    turn = changeTurn();
 }
 
 createCircleNode = (divNode) => {
@@ -28,11 +36,15 @@ createCircleNode = (divNode) => {
     const innerDiv = document.createElement("div");
     innerDiv.classList.add("innercircle");
     resultNode.appendChild(innerDiv);
+    console.log(resultNode);
     return resultNode;
 }
 
-createCrosseNode = (divNode) => {
+createCrossNode = (divNode) => {
     const resultNode = divNode.cloneNode();
-    resultNode.classList.add("circle");
+    resultNode.classList.add("cross");
+    console.log(resultNode);
     return resultNode;
 }
+
+changeTurn = () => turn === "circle" ? "cross" : "circle";
