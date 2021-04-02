@@ -1,4 +1,9 @@
-window.onclick = e => {
-    console.log(e.target);  // to get the element
-    console.log(e.target.tagName);  // to get the element tag name alone
-} 
+markCell = (element) => {
+    if (!element.hasChildNodes())
+    {
+        const p = document.createElement("p");
+        const x = document.createTextNode("X");
+        p.appendChild(x);
+        element.appendChild(p)
+    }
+}
