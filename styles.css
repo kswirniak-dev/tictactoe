@@ -37,7 +37,7 @@ div.cross:before, div.cross:after {
   div.circle {
   height: 100px;
   width: 100px;
-  background-color: palevioletred;
+  background-color: brown;
   border-radius: 50%;
   display: inline-block;
   position:relative;
