@@ -1,9 +1,11 @@
-markCell = (element) => {
-    if (!element.hasChildNodes())
+toggleCross = (element) => {
+    console.log(element.childNodes);
+    if (!element.childNodes[0].classList.contains("cross"))
+    {        
+        element.childNodes[0].classList.add("cross");
+    }
+    else
     {
-        const p = document.createElement("p");
-        const x = document.createTextNode("X");
-        p.appendChild(x);
-        element.appendChild(p)
+        element.childNodes[0].classList.remove("cross")
     }
 }
