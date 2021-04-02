@@ -1,33 +1,20 @@
 let turn = "cross";
 
-toggleCross = (element) => {
-    if (element.childNodes[0].classList.length === 0)
-    {        
-        element.childNodes[0].classList.add("cross");
-    }
-    else
-    {
-        element.childNodes[0].classList.remove(element.childNodes[0].classList[0])
-        if (element.childNodes[0].childNodes.length > 0) {
-            element.childNodes[0].removeChild(element.childNodes[0].childNodes[0]);
-        }
-        
-    }
-}
-
 markCell = (element) => {
-    console.log(turn)
+    if (!isCellEmpty(element)){
+        alert("The cell is already taken. Choose another one.");
+        return null;
+    }
     if (turn === "circle") {
-        console.log("about to add circle node");
         element.appendChild(createCircleNode(element.childNodes[0]));
         element.removeChild(element.firstChild);
     }
     else if (turn === "cross"){
-        console.log("about to add cross node");
         element.appendChild(createCrossNode(element.childNodes[0]));
         element.removeChild(element.firstChild);
     }
     turn = changeTurn();
+    return element;
 }
 
 createCircleNode = (divNode) => {
@@ -36,15 +23,20 @@ createCircleNode = (divNode) => {
     const innerDiv = document.createElement("div");
     innerDiv.classList.add("innercircle");
     resultNode.appendChild(innerDiv);
-    console.log(resultNode);
     return resultNode;
 }
 
 createCrossNode = (divNode) => {
     const resultNode = divNode.cloneNode();
     resultNode.classList.add("cross");
-    console.log(resultNode);
     return resultNode;
+}
+
+isCellEmpty = (element) => {
+    if (element.firstChild.classList.contains("circle") || element.firstChild.classList.contains("cross") ) {
+        return false;
+    }
+    return true;
 }
 
 changeTurn = () => turn === "circle" ? "cross" : "circle";
