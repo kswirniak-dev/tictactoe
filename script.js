@@ -13,8 +13,13 @@ toggleCross = (element) => {
     }
 }
 
-markAsCircle = (element) => {
-    element.childNodes[0] = createCircleNode(element.childNodes[0]);
+markCell = (element, turn) => {
+    if (turn === "circle") {
+        element.childNodes[0] = createCircleNode(element.childNodes[0]);
+    }
+    else if (turn === "cross"){
+        element.childNodes[0] = createCrossNode(element.childNodes[0]);
+    }
 }
 
 createCircleNode = (divNode) => {
@@ -23,11 +28,11 @@ createCircleNode = (divNode) => {
     const innerDiv = document.createElement("div");
     innerDiv.classList.add("innercircle");
     resultNode.appendChild(innerDiv);
-
-    console.log(divNode);
-    console.log(resultNode);
-    console.log(divNode === resultNode)
-
     return resultNode;
+}
 
+createCrosseNode = (divNode) => {
+    const resultNode = divNode.cloneNode();
+    resultNode.classList.add("circle");
+    return resultNode;
 }
