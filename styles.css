@@ -8,6 +8,7 @@ td {
 
 .game {
   margin: auto;
+  margin-top: 150px;
 }
 
 td.middle {
@@ -67,4 +68,35 @@ div.innercircle {
   border-radius: 50%;
   margin: 20px 0 0 20px;
   position:absolute;
+}
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  display:block;
+  visibility:hidden;
+}
+
+.warning {
+  background-color: #ff9800;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
 }

@@ -2,7 +2,8 @@ let turn = "cross";
 
 markCell = (element) => {
     if (!isCellEmpty(element)){
-        alert("The cell is already taken. Choose another one.");
+        document.getElementById("warning-cell-taken").style.visibility='visible';
+        document.getElementById("warning-cell-taken").classList.add("fade-out");
         return null;
     }
     if (turn === "circle") {
