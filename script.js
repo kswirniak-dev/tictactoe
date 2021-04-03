@@ -1,11 +1,17 @@
 let turn = "cross";
 
-markCell = (element) => {
+makeTurn = (element) => {
+    const alertBox = document.getElementById("warning-cell-taken");
     if (!isCellEmpty(element)){
-        document.getElementById("warning-cell-taken").style.visibility='visible';
-        document.getElementById("warning-cell-taken").classList.add("fade-out");
+        alertBox.style.visibility='visible';
         return null;
     }
+    markCell(element);
+    makeElementInvinsible(alertBox);
+    turn = changeTurn();
+}
+
+markCell = (element) => {
     if (turn === "circle") {
         element.appendChild(createCircleNode(element.childNodes[0]));
         element.removeChild(element.firstChild);
@@ -14,7 +20,6 @@ markCell = (element) => {
         element.appendChild(createCrossNode(element.childNodes[0]));
         element.removeChild(element.firstChild);
     }
-    turn = changeTurn();
     return element;
 }
 
@@ -41,3 +46,5 @@ isCellEmpty = (element) => {
 }
 
 changeTurn = () => turn === "circle" ? "cross" : "circle";
+
+makeElementInvinsible = (element) => element.style.visibility = 'hidden';
