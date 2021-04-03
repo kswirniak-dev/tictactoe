@@ -4,7 +4,7 @@ const WINNING_COMBINATIONS = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6
 makeTurn = (element) => {
     const alertBox = document.getElementById("warning-cell-taken");
     if (!isCellEmpty(element)){
-        alertBox.style.visibility='visible';
+        alertBox.classList.remove('hidden');
         return null;
     }
     markCell(element);
@@ -49,7 +49,7 @@ isCellEmpty = (element) => {
 
 changeTurn = () => turn === "circle" ? "cross" : "circle";
 
-makeElementInvinsible = (element) => element.style.visibility = 'hidden';
+makeElementInvinsible = (element) => element.classList.add('hidden');
 
 checkforVictory = () => WINNING_COMBINATIONS.some( combination => combination.every(number => [].slice.call(document.getElementsByClassName(turn))
         .map(cell => Number(cell.parentNode.id))

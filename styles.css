@@ -10,6 +10,9 @@ td {
   margin: auto;
   margin-top: 150px;
 }
+.hidden {
+  visibility: hidden;
+}
 
 td.middle {
   border-bottom: 2px solid gray;
@@ -76,7 +79,6 @@ div.innercircle {
   background-color: #f44336; /* Red */
   color: white;
   display:block;
-  visibility:hidden;
 }
 
 .warning {
