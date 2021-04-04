@@ -4,14 +4,15 @@ const WINNING_COMBINATIONS = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6
 makeTurn = (element) => {
     let messageBox = document.getElementById('message-box');
     const page = document.getElementById('page');   
+    if (page.firstChild.id === 'message-box'){
+        page.removeChild(page.firstChild);
+    }
     if (!isCellEmpty(element)){
         messageBox = createMessageBox('warning', 'To pole jest zajęte. Wybierz inne.');
         page.insertBefore(messageBox, page.childNodes[0]);        
         return null;     
     }
-    if (page.firstChild.id === 'message-box'){
-        page.removeChild(page.firstChild);
-    }
+
     markCell(element);
     if (checkforVictory()) {
         messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + turn);
