@@ -16,7 +16,7 @@ makeTurn = (element) => {
 
     markCell(element);
     if (checkforVictory()) {
-        messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + (turn === 'cross' ? 'X' : 'O'));
+        messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + (turn === 'cross' ? '🗙' : '◎'));
         page.insertBefore(messageBox, page.childNodes[0])
         const squares = [].slice.call(document.getElementsByClassName('square'));
         squares.map(node => disableMouseEvents(node));
@@ -30,7 +30,7 @@ markCell = (element) => {
         element.appendChild(createCircleNode(element.childNodes[0]));
         element.removeChild(element.firstChild);
     }
-    else if (turn === 'cross'){
+    else if (turn === 'cross') {
         element.appendChild(createCrossNode(element.childNodes[0]));
         element.removeChild(element.firstChild);
     }
@@ -84,8 +84,8 @@ createMessageBox = (className, text) => {
     }
     const p = document.createElement('p')
     p.classList.add('message-text')
-    text = document.createTextNode(text)
-    p.appendChild(text);    
+    const textNode = document.createTextNode(text)
+    p.appendChild(textNode);    
     messageBox.appendChild(p);
     if (messageBox.classList.contains('gameover')) {
         messageBox.appendChild(createStartAgainButton());
