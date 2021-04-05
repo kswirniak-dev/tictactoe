@@ -3,7 +3,8 @@ const WINNING_COMBINATIONS = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6
 
 makeTurn = (element) => {
     let messageBox = document.getElementById('message-box');
-    const page = document.getElementById('page');   
+    const page = document.getElementById('page');
+    
     if (page.firstChild.id === 'message-box'){
         page.removeChild(page.firstChild);
     }
@@ -19,6 +20,7 @@ makeTurn = (element) => {
         page.insertBefore(messageBox, page.childNodes[0])
         const squares = [].slice.call(document.getElementsByClassName('square'));
         squares.map(node => disableMouseEvents(node));
+
     }
     turn = changeTurn();
 }
@@ -84,15 +86,38 @@ createMessageBox = (className, text) => {
     p.appendChild(text);
     messageBox.appendChild(closeButton);
     messageBox.appendChild(p);
+    if (messageBox.classList.contains('gameover')) {
+        messageBox.appendChild(createStartAgainButton());
+    }
     
     return messageBox;
 }
 
+createStartAgainButton = () => {
+    startAgainButton = document.createElement('button');
+    startAgainButton.text = "Zagraj ponownie";
+    startAgainButton.onclick = function(event) {
+        restartGame();
+    }
+    startAgainButton.setAttribute('id', 'restart-button');
+    return startAgainButton
+}
+
 cleanupBoard = () => { 
-    const squares = [].slice.call(document.getElementsByClassName('square'));
-    squares.removeChild(squares.childNodes[0]);
-    squares.appendChild(document.createElement('div'));
+    const squares = document.getElementsByClassName('square');
+    Array.from(squares).map(square => square.removeChild(square.firstChild));
+    [].forEach.call(squares, element => element.appendChild(document.createElement('div')));
     return squares;
+}
+
+restartGame = () => {
+    cleanupBoard();
+    const squares = document.getElementsByClassName('square');
+    [].map.call(squares, element => enableMouseEvents(element));
+}
+enableMouseEvents = (element) => {
+    element.classList.remove('disabled');
+    return element;
 }
 
 disableMouseEvents = (element) => element.classList.add('disabled');
