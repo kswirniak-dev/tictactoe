@@ -113,3 +113,7 @@ div.innercircle {
 .closebtn:hover {
   color: black;
 }
+
+.disabled {
+  pointer-events: none;
+}

@@ -17,6 +17,9 @@ makeTurn = (element) => {
     if (checkforVictory()) {
         messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + turn);
         page.insertBefore(messageBox, page.childNodes[0])
+        const squares = [].slice.call(document.getElementsByClassName('square'));
+        console.log(squares);
+        squares.map(node => disableMouseEvents(node));
         }
     turn = changeTurn();
 }
@@ -85,3 +88,5 @@ createMessageBox = (className, text) => {
     
     return messageBox;
 }
+
+disableMouseEvents = (element) => element.classList.add('disabled');
