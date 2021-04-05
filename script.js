@@ -20,7 +20,6 @@ makeTurn = (element) => {
         page.insertBefore(messageBox, page.childNodes[0])
         const squares = [].slice.call(document.getElementsByClassName('square'));
         squares.map(node => disableMouseEvents(node));
-
     }
     turn = changeTurn();
 }
@@ -73,18 +72,19 @@ createMessageBox = (className, text) => {
     messageBox.setAttribute('id', 'message-box');
     messageBox.classList.add('alert');
     messageBox.classList.add(className);
-    const closeButton = document.createElement('span');
-    closeButton.classList.add('closebtn');
-    closeButton.onclick = function(event) {
+    if (className === 'warning') {
+        const closeButton = document.createElement('span');
+        closeButton.classList.add('closebtn');
+        closeButton.appendChild(document.createTextNode('×'))
+        closeButton.onclick = function(event) {
         this.parentElement.classList.add('hidden');
+        }
+        messageBox.appendChild(closeButton);
     }
-    const crossButton =  document.createTextNode('×');
-    closeButton.appendChild(crossButton);
     const p = document.createElement('p')
     p.classList.add('message-text')
     text = document.createTextNode(text)
-    p.appendChild(text);
-    messageBox.appendChild(closeButton);
+    p.appendChild(text);    
     messageBox.appendChild(p);
     if (messageBox.classList.contains('gameover')) {
         messageBox.appendChild(createStartAgainButton());
@@ -95,11 +95,11 @@ createMessageBox = (className, text) => {
 
 createStartAgainButton = () => {
     startAgainButton = document.createElement('button');
-    startAgainButton.text = "Zagraj ponownie";
+    startAgainButton.appendChild(document.createTextNode("Zagraj ponownie"));
+    startAgainButton.setAttribute('class', 'restart-button');
     startAgainButton.onclick = function(event) {
-        restartGame();
+        restartGame(startAgainButton);
     }
-    startAgainButton.setAttribute('id', 'restart-button');
     return startAgainButton
 }
 
@@ -110,10 +110,11 @@ cleanupBoard = () => {
     return squares;
 }
 
-restartGame = () => {
+restartGame = (eventEmmiter) => {
     cleanupBoard();
     const squares = document.getElementsByClassName('square');
     [].map.call(squares, element => enableMouseEvents(element));
+    eventEmmiter.parentNode.classList.add('hidden');
 }
 enableMouseEvents = (element) => {
     element.classList.remove('disabled');

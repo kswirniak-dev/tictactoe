@@ -81,14 +81,14 @@ div.innercircle {
   left:5%;
   width:90%;
   border-radius: 10px;
+  display: flex;
 }
 
 .message-text {
   margin-left: 20px;
 }
 
-.gameover
-{
+.gameover {
   background-color: green;
 }
 
@@ -116,4 +116,12 @@ div.innercircle {
 
 .disabled {
   pointer-events: none;
+}
+
+.restart-button {
+  position: relative;
+  left: 20px;  
+  top: 10px;
+  height: 30px;
+  background-color: darkseagreen;
 }
