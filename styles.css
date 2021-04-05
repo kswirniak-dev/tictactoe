@@ -98,10 +98,10 @@ div.innercircle {
 
 /* The close button */
 .closebtn {
-  margin-left: 15px;
+  margin-right: 10px;
+  float:right;
   color: white;
   font-weight: bold;
-  float: right;
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;

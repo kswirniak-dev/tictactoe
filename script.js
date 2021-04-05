@@ -15,12 +15,11 @@ makeTurn = (element) => {
 
     markCell(element);
     if (checkforVictory()) {
-        messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + turn);
+        messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + (turn === 'cross' ? 'X' : 'O'));
         page.insertBefore(messageBox, page.childNodes[0])
         const squares = [].slice.call(document.getElementsByClassName('square'));
-        console.log(squares);
         squares.map(node => disableMouseEvents(node));
-        }
+    }
     turn = changeTurn();
 }
 
@@ -87,6 +86,13 @@ createMessageBox = (className, text) => {
     messageBox.appendChild(p);
     
     return messageBox;
+}
+
+cleanupBoard = () => { 
+    const squares = [].slice.call(document.getElementsByClassName('square'));
+    squares.removeChild(squares.childNodes[0]);
+    squares.appendChild(document.createElement('div'));
+    return squares;
 }
 
 disableMouseEvents = (element) => element.classList.add('disabled');
