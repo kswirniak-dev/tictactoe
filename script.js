@@ -76,7 +76,8 @@ createMessageBox = (className, text) => {
     }
     const crossButton =  document.createTextNode('×');
     closeButton.appendChild(crossButton);
-    const p = document.createElement("p")
+    const p = document.createElement('p')
+    p.classList.add('message-text')
     text = document.createTextNode(text)
     p.appendChild(text);
     messageBox.appendChild(closeButton);

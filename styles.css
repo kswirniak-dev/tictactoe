@@ -7,8 +7,7 @@ td {
 }
 
 .game {
-  margin: auto;
-  margin-top: 150px;
+  margin: 150px auto;
 }
 .hidden {
   visibility: hidden;
@@ -75,9 +74,17 @@ div.innercircle {
 
 /* The alert message box */
 .alert {
-  padding:8px;
+  padding:6px;
   color: white;
-  display:block;
+  position:absolute;
+  top:0;
+  left:5%;
+  width:90%;
+  border-radius: 10px;
+}
+
+.message-text {
+  margin-left: 20px;
 }
 
 .gameover
