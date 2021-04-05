@@ -22,6 +22,7 @@ makeTurn = (element) => {
         squares.map(node => disableMouseEvents(node));
     }
     turn = changeTurn();
+    return page;
 }
 
 markCell = (element) => {
