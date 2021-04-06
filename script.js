@@ -4,6 +4,7 @@ const WINNING_COMBINATIONS = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6
 makeTurn = (element) => {
     let messageBox = document.getElementById('message-box');
     const page = document.getElementById('page');
+    const squares = [].slice.call(document.getElementsByClassName('square'));
     
     if (page.firstChild.id === 'message-box'){
         page.removeChild(page.firstChild);
@@ -18,9 +19,16 @@ makeTurn = (element) => {
     if (checkforVictory()) {
         messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + (turn === 'cross' ? '🗙' : '◎'));
         page.insertBefore(messageBox, page.childNodes[0])
-        const squares = [].slice.call(document.getElementsByClassName('square'));
         squares.map(node => disableMouseEvents(node));
     }
+
+    if (squares.every( square => square.firstChild.classList.contains('cross') || square.firstChild.classList.contains('circle'))) {
+        messageBox = createMessageBox('gameover', 'Koniec gry. Remis. 🗙=◎')
+        page.insertBefore(messageBox, page.childNodes[0])
+        squares.map(node => disableMouseEvents(node));
+    }
+
+  
     turn = changeTurn();
     return page;
 }
