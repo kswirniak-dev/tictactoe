@@ -21,8 +21,7 @@ makeTurn = (element) => {
         page.insertBefore(messageBox, page.firstChild)
         squares.map(node => disableMouseEvents(node));
     }
-
-    if (squares.every( square => square.firstChild.classList.contains('cross') || square.firstChild.classList.contains('circle'))) {
+    else if (squares.every( square => square.firstChild.classList.contains('cross') || square.firstChild.classList.contains('circle'))) {
         messageBox = createMessageBox('gameover', 'Koniec gry. Remis. 🗙=◎')
         page.insertBefore(messageBox, page.firstChild)
         squares.map(node => disableMouseEvents(node));
@@ -123,7 +122,7 @@ restartGame = (eventEmmitter) => {
     cleanupBoard();
     const squares = document.getElementsByClassName('square');
     [].map.call(squares, element => enableMouseEvents(element));
-    eventEmmitter.parentNode.classList.add('hidden');
+    eventEmmitter.parentNode.parentNode.removeChild( eventEmmitter.parentNode.parentNode.firstChild);
 }
 enableMouseEvents = (element) => {
     element.classList.remove('disabled');
