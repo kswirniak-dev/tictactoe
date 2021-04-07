@@ -35,11 +35,11 @@ makeTurn = (element) => {
 
 markCell = (element) => {
     if (turn === 'circle') {
-        element.appendChild(createCircleNode(element.childNodes[0]));
+        element.appendChild(createCircleNode(element.firstChild));
         element.removeChild(element.firstChild);
     }
     else if (turn === 'cross') {
-        element.appendChild(createCrossNode(element.childNodes[0]));
+        element.appendChild(createCrossNode(element.firstChild));
         element.removeChild(element.firstChild);
     }
     return element;
