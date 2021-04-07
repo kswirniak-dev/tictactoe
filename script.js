@@ -11,20 +11,20 @@ makeTurn = (element) => {
     }
     if (!isCellEmpty(element)){
         messageBox = createMessageBox('warning', 'To pole jest zajęte. Wybierz inne.');
-        page.insertBefore(messageBox, page.childNodes[0]);        
+        page.insertBefore(messageBox, page.firstChild);        
         return null;     
     }
 
     markCell(element);
     if (checkforVictory()) {
         messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + (turn === 'cross' ? '🗙' : '◎'));
-        page.insertBefore(messageBox, page.childNodes[0])
+        page.insertBefore(messageBox, page.firstChild)
         squares.map(node => disableMouseEvents(node));
     }
 
     if (squares.every( square => square.firstChild.classList.contains('cross') || square.firstChild.classList.contains('circle'))) {
         messageBox = createMessageBox('gameover', 'Koniec gry. Remis. 🗙=◎')
-        page.insertBefore(messageBox, page.childNodes[0])
+        page.insertBefore(messageBox, page.firstChild)
         squares.map(node => disableMouseEvents(node));
     }
 
@@ -119,11 +119,11 @@ cleanupBoard = () => {
     return squares;
 }
 
-restartGame = (eventEmmiter) => {
+restartGame = (eventEmmitter) => {
     cleanupBoard();
     const squares = document.getElementsByClassName('square');
     [].map.call(squares, element => enableMouseEvents(element));
-    eventEmmiter.parentNode.classList.add('hidden');
+    eventEmmitter.parentNode.classList.add('hidden');
 }
 enableMouseEvents = (element) => {
     element.classList.remove('disabled');
