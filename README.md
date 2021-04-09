@@ -1,2 +1,2 @@
 # tictactoe
-Tic-tac-toe browser game, developped using JavaScript, HTML and CSS.
+Tic-Tac-Toe browser game developed using JavaScript, HTML and CSS.
