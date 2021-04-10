@@ -17,12 +17,12 @@ makeTurn = (element) => {
 
     markCell(element);
     if (checkforVictory()) {
-        messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + (turn === 'cross' ? '🗙' : '◎'));
+        messageBox = createMessageBox('gameover', 'Koniec gry. Zwycięzca: ' + (turn === 'cross' ? '	\u274C' : '\u2B55'));
         page.insertBefore(messageBox, page.firstChild)
         squares.map(node => disableMouseEvents(node));
     }
     else if (squares.every( square => square.firstChild.classList.contains('cross') || square.firstChild.classList.contains('circle'))) {
-        messageBox = createMessageBox('gameover', 'Koniec gry. Remis. 🗙=◎')
+        messageBox = createMessageBox('gameover', 'Koniec gry. Remis. \u274C = \u2B55')
         page.insertBefore(messageBox, page.firstChild)
         squares.map(node => disableMouseEvents(node));
     }
