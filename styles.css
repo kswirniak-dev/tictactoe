@@ -1,13 +1,12 @@
-table.game {
-  border-collapse: collapse;
-}
-td.square {
-    width:110px;
-    height:110px;
-}
-
 .game {
+  border-collapse: collapse;
   margin: 150px auto;
+}
+.square {
+    max-width:110px;
+    min-width: 110px;
+    padding-top:110px;
+    position: relative;
 }
 
 .hidden {
@@ -25,12 +24,16 @@ td.center {
 }
 
 div.cross {
-    width: 108px;
-    height: 108px;    
-    position: relative;
+    width: 100%;
+    height: 100%;    
     transform:rotate(45deg);
     -ms-transform:rotate(45deg);
     -webkit-transform:rotate(45deg); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 div.cross:before, div.cross:after {
@@ -56,20 +59,23 @@ div.cross:after {
   }
 
 div.circle {
-  height: 100px;
-  width: 100px;
+  height: 100%;
+  width: 100%;
   background-color: brown;
   border-radius: 50%;
-  position: relative;
-  margin-left: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 div.innercircle {
-  height:60px;
-  width: 60px;
+  height:60%;
+  width: 60%;
   background-color: white;
   border-radius: 50%;
-  margin: 20px 0 0 20px;
+  margin: 20% 0 0 20%;
   position:absolute;
 }
 
@@ -127,9 +133,33 @@ div.innercircle {
   background-color: darkseagreen;
 }
 
-@media only screen {
+@media only screen 
 and (max-device-width : 1000px) {
- td
+ .square {
+  width:33%;
+  padding-top:33%;
+  position: relative;
+  }
 
-  
+  .circle, .cross {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .row {
+    width:100%;
+  }
+
+  .game {
+    width:100%;
+  }
+
+  .page {
+    width:100%;
+  }
+
 }
+
